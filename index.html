@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casio fx-97SG X — Calculator Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple: #3C3489; --purple-light: #EEEDFE; --purple-mid: #6C62D4;
+    --teal: #0F6E56; --teal-light: #E1F5EE;
+    --amber: #854F0B; --amber-light: #FAEEDA;
+    --bg: #F7F6F2; --card: #FFFFFF; --border: #E4E2D9;
+    --text: #1A1916; --text-muted: #7A7870;
+    --mono: 'DM Mono', monospace; --sans: 'DM Sans', sans-serif;
+  }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  .header { background: var(--purple); padding: 48px 40px 40px; color: white; }
+  .header-inner { max-width: 860px; margin: 0 auto; }
+  .header h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .header p { font-size: 15px; opacity: 0.7; }
+  .header .badge { display: inline-block; margin-top: 14px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-family: var(--mono); letter-spacing: 0.05em; }
+
+  .layout { max-width: 860px; margin: 0 auto; padding: 32px 40px 80px; }
+
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+  .tab { padding: 8px 18px; border-radius: 24px; border: 1.5px solid var(--border); font-size: 13px; font-weight: 500; cursor: pointer; background: var(--card); color: var(--text-muted); transition: all 0.15s; font-family: var(--sans); }
+  .tab:hover { border-color: var(--purple-mid); color: var(--purple); }
+  .tab.active { background: var(--purple); color: white; border-color: var(--purple); }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title { font-size: 22px; font-weight: 600; color: var(--purple); border-bottom: 2px solid var(--purple-light); padding-bottom: 12px; margin-bottom: 24px; letter-spacing: -0.3px; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
+  .card-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 14px; }
+
+  .label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+
+  ol.steps { list-style: none; counter-reset: steps; padding: 0; }
+  ol.steps li { counter-increment: steps; padding: 7px 0 7px 36px; position: relative; font-size: 14px; color: #3A3835; line-height: 1.6; border-bottom: 1px solid #F0EFE9; }
+  ol.steps li:last-child { border-bottom: none; }
+  ol.steps li::before { content: counter(steps); position: absolute; left: 0; top: 8px; width: 22px; height: 22px; border-radius: 50%; background: var(--purple); color: white; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  ol.steps li strong { color: var(--text); font-weight: 600; }
+
+  /* Standard key */
+  .key { display: inline-block; background: #F0EFE9; border: 1px solid #D9D7CE; border-radius: 5px; padding: 1px 7px; font-size: 12px; font-family: var(--mono); color: var(--text); white-space: nowrap; vertical-align: middle; }
+
+  /* DMS key: o with ' '' sitting at top-right */
+  .key-dms {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    align-items: start;
+    background: #F0EFE9;
+    border: 1px solid #D9D7CE;
+    border-radius: 5px;
+    padding: 2px 6px 2px 6px;
+    font-family: var(--mono);
+    color: var(--text);
+    white-space: nowrap;
+    vertical-align: middle;
+    gap: 1px;
+  }
+  .key-dms .d-o { font-size: 13px; line-height: 1.4; }
+  .key-dms .d-marks { font-size: 9px; line-height: 1; margin-top: 1px; letter-spacing: 0px; }
+
+  .eg { background: #F5F4EF; border-left: 3px solid var(--purple-mid); border-radius: 0 8px 8px 0; padding: 10px 14px; font-family: var(--mono); font-size: 13px; color: var(--text); margin-top: 12px; white-space: pre-line; line-height: 1.8; }
+
+  .note { padding: 10px 14px; font-size: 13px; line-height: 1.6; margin-top: 12px; }
+  .note.warn { background: var(--amber-light); color: var(--amber); border-left: 3px solid #EF9F27; border-radius: 0 8px 8px 0; }
+  .note.good { background: var(--teal-light); color: var(--teal); border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; }
+
+  /* Standalone top note — full rounded */
+  .top-note { border-radius: 8px; padding: 12px 16px; font-size: 13px; line-height: 1.7; margin-bottom: 16px; background: var(--amber-light); color: var(--amber); border-left: 3px solid #EF9F27; }
+
+  .tip { font-size: 14px; color: #3A3835; padding: 5px 0 5px 14px; border-left: 2px solid var(--border); margin-bottom: 6px; line-height: 1.6; }
+  .tip strong { color: var(--text); font-weight: 600; }
+
+  .body-text { font-size: 14px; color: #3A3835; line-height: 1.7; margin-bottom: 16px; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+
+  .footer { text-align: center; padding: 24px 40px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--card); }
+
+  @media (max-width: 600px) {
+    .header { padding: 32px 20px 28px; }
+    .layout { padding: 24px 20px 60px; }
+    .header h1 { font-size: 24px; }
+    .tab { font-size: 12px; padding: 6px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <h1>Casio fx-97SG X</h1>
+    <p>Calculator Guide for Math</p>
+    <span class="badge">Based on the official Casio fx-97SG X User's Guide</span>
+  </div>
+</div>
+
+<div class="layout">
+
+  <div class="tabs">
+    <button class="tab active" onclick="show('sf', this)">Standard Form</button>
+    <button class="tab" onclick="show('stat', this)">Mean &amp; SD</button>
+    <button class="tab" onclick="show('time', this)">Time Conversion</button>
+    <button class="tab" onclick="show('sim', this)">Simultaneous Eq</button>
+    <button class="tab" onclick="show('poly', this)">Quadratic &amp; Cubic</button>
+  </div>
+
+  <!-- ── STANDARD FORM ── -->
+  <div id="sf" class="section active">
+    <div class="section-title">1. Standard Form</div>
+
+    <div class="card">
+      <div class="card-title">Displaying results in standard form (Sci mode)</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Press <span class="key">SHIFT</span> + <span class="key">MENU/SETUP</span> to open the setup menu</li>
+        <li>Select <strong>Number Format</strong></li>
+        <li>Select <strong>Sci</strong>, then choose number of significant figures (e.g. 3)</li>
+        <li>All results now display as e.g. <strong>3.20×10⁵</strong></li>
+      </ol>
+      <div class="note good">To return to normal display: [SHIFT] + [MENU/SETUP] → Number Format → Norm → select Norm 2 (recommended).</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Norm 1 vs Norm 2 &amp; ENG</div>
+      <div class="tip"><strong>Norm 1</strong>: Switches to standard form for numbers ≥ 10¹⁰ or ≤ 10⁻²</div>
+      <div class="tip"><strong>Norm 2</strong>: Only switches for numbers ≥ 10¹⁰ or ≤ 10⁻⁹ — shows more numbers as plain decimals. Recommended for most use.</div>
+      <div class="tip"><strong>ENG key</strong>: Shifts the decimal point in steps of 3 (kilo, mega, milli etc.). Useful for physics.</div>
+    </div>
+  </div>
+
+  <!-- ── MEAN & SD ── -->
+  <div id="stat" class="section">
+    <div class="section-title">2. Mean &amp; Standard Deviation</div>
+
+    <p class="body-text">The fx-97SG X uses Statistics Mode for calculating mean and standard deviation. The Frequency column is <strong>hidden by default</strong> — turn it on in Setup first if your data has repeated values.</p>
+
+    <div class="card">
+      <div class="card-title">Enable the Frequency column</div>
+      <div class="label">Setup</div>
+      <ol class="steps">
+        <li>Press <span class="key">SHIFT</span> + <span class="key">MENU/SETUP</span></li>
+        <li>Scroll down and select <strong>Statistics</strong></li>
+        <li>Select <strong>On</strong> to show the Freq column</li>
+      </ol>
+      <div class="note good">If all your data values appear only once, leave Statistics set to Off and skip the Freq column entirely.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Entering Statistics Mode</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Press <span class="key">MENU</span> → highlight the <strong>Statistics</strong> icon → press <span class="key">=</span></li>
+        <li>On the Select Type screen, press <span class="key">1</span> to select <strong>1-Variable</strong></li>
+        <li>The Statistics Editor appears — this is where you enter your data</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Inputting your data</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Type your first data value in the <strong>x</strong> column, press <span class="key">=</span></li>
+        <li>If Freq is ON: move to the <strong>Freq</strong> column and enter how many times that value appears, press <span class="key">=</span></li>
+        <li>Repeat for all values, pressing <span class="key">=</span> after each entry</li>
+        <li>When done, press <span class="key">AC</span> — data is saved and you move to the calculation screen</li>
+      </ol>
+      <div class="note warn">
+        <strong>To edit or insert a row:</strong><br>
+        Press <span class="key">OPTN</span> → <strong>Data</strong> — from here you can edit values and insert new rows.<br><br>
+        Alternatively, to delete a single row: move the cursor to that row and press <span class="key">DEL</span>.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Getting your results</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Press <span class="key">OPTN</span></li>
+        <li>Select <strong>1-Variable Calc</strong> (usually option 3)</li>
+        <li>A list of results appears — scroll with the arrow keys</li>
+      </ol>
+      <hr class="divider">
+      <div class="tip"><strong>x&#x0305;</strong>: The arithmetic mean</div>
+      <div class="tip"><strong>σx</strong>: Population standard deviation</div>
+      <div class="tip"><strong>Σx</strong>: Sum of all values</div>
+      <div class="tip"><strong>Σx²</strong>: Sum of squares</div>
+      <hr class="divider">
+      <div class="note good">To return to normal calculator mode: press <span class="key">MENU</span> → select <strong>Calculate</strong> (icon 1).</div>
+    </div>
+  </div>
+
+  <!-- ── TIME CONVERSION ── -->
+  <div id="time" class="section">
+    <div class="section-title">3. Time Conversion</div>
+
+    <p class="body-text">
+      The
+      <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span>
+      key (3rd row, 2nd from left — next to the <span class="key">(-)</span> key) handles both degrees/minutes/seconds and hours/minutes/seconds, since both use base-60.
+    </p>
+
+    <div class="card">
+      <div class="card-title">Decimal → hours, minutes, seconds</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Type the decimal value — e.g. <strong>2.575</strong></li>
+        <li>Press <span class="key">=</span></li>
+        <li>Press <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span> — result displays as <strong>2°34'30"</strong> meaning 2h 34min 30sec</li>
+      </ol>
+      <div class="eg">2.575 hours  →  2h 34min 30sec</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Hours, minutes, seconds → decimal</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Type the hours value, then press <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span></li>
+        <li>Type the minutes value, then press <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span></li>
+        <li>Type the seconds value, then press <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span></li>
+        <li>Press <span class="key">SHIFT</span> + <span class="key">=</span> — result shown as a decimal</li>
+      </ol>
+      <div class="eg" style="display:flex; align-items:center; flex-wrap:wrap; gap:6px; font-family:var(--mono); font-size:13px;">
+        <span>2</span><span>+</span>
+        <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span><span>+</span>
+        <span>34</span><span>+</span>
+        <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span><span>+</span>
+        <span>30</span><span>+</span>
+        <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span><span>+</span>
+        <span><span class="key">SHIFT</span>+<span class="key">=</span></span>
+        <span>→ &nbsp;2.575</span>
+      </div>
+      <div class="note warn">
+        <strong>You must enter something for every unit — even if it is zero.</strong><br><br>
+        Example: 2 hours and 32 seconds (no minutes):<br><br>
+        2 + <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span> + <strong>0</strong> + <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span> + 32 + <span class="key-dms"><span class="d-o">o</span><span class="d-marks">' ''</span></span> + <span class="key">SHIFT</span>+<span class="key">=</span><br><br>
+        The minutes must be entered as <strong>0</strong> — you cannot skip it.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SIMULTANEOUS EQUATIONS ── -->
+  <div id="sim" class="section">
+    <div class="section-title">4. Simultaneous Equations</div>
+
+    <div class="card">
+      <div class="card-title">Entering Equation Mode</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Press <span class="key">MENU</span> → highlight the <strong>Equation</strong> icon → press <span class="key">=</span></li>
+        <li>Press <span class="key">1</span> to select <strong>Simul Equation</strong></li>
+        <li>Press <span class="key">2</span> for 2 unknowns (x and y), or <span class="key">3</span> for 3 unknowns</li>
+      </ol>
+      <div class="note warn">Rearrange equations to the form <strong>ax + by = c</strong> before entering. All terms must be on the left side.<br>e.g. &nbsp;3y = 8 − 2x &nbsp;→&nbsp; 2x + 3y = 8</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Entering coefficients — format: a₁x + b₁y = c₁</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Enter <strong>a₁</strong> (coefficient of x in equation 1) → press <span class="key">=</span></li>
+        <li>Enter <strong>b₁</strong> (coefficient of y in equation 1) → press <span class="key">=</span></li>
+        <li>Enter <strong>c₁</strong> (the constant on the right side) → press <span class="key">=</span></li>
+        <li>Repeat for equation 2: enter a₂, b₂, c₂ pressing <span class="key">=</span> after each</li>
+        <li>Press <span class="key">=</span> to display x — press <span class="key">=</span> again to display y</li>
+      </ol>
+      <div class="eg">2x + 3y = 8  and  x − y = 1
+Enter: a₁=2, b₁=3, c₁=8,  a₂=1, b₂=−1, c₂=1
+Result: x=−1, y=2</div>
+      <div class="note good">Press <span class="key">AC</span> at any time to clear all coefficients and start again.</div>
+    </div>
+  </div>
+
+  <!-- ── QUADRATIC & CUBIC ── -->
+  <div id="poly" class="section">
+    <div class="section-title">5. Solving Quadratic &amp; Cubic Equations</div>
+
+    <div class="card">
+      <div class="card-title">Entering Equation Mode</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Press <span class="key">MENU</span> → highlight <strong>Equation</strong> → press <span class="key">=</span></li>
+        <li>Press <span class="key">2</span> to select <strong>Polynomial</strong></li>
+        <li>Press <span class="key">2</span> for quadratic (degree 2) or <span class="key">3</span> for cubic (degree 3)</li>
+      </ol>
+      <div class="note warn">
+        <strong>Before entering coefficients:</strong> The equation must equal 0. Move all terms to one side first.<br>
+        e.g. &nbsp;x² = 5x − 6 &nbsp;→&nbsp; x² − 5x + 6 = 0
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Quadratic: ax² + bx + c = 0</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Enter <strong>a</strong> → press <span class="key">=</span></li>
+        <li>Enter <strong>b</strong> → press <span class="key">=</span></li>
+        <li>Enter <strong>c</strong> → press <span class="key">=</span></li>
+        <li>Press <span class="key">=</span> to see x₁ — press again for x₂</li>
+        <li>Press <span class="key">=</span> once more on the last solution to return to the Coefficient Editor</li>
+      </ol>
+      <div class="eg">x² − 5x + 6 = 0   →   a=1, b=−5, c=6   →   x₁=3, x₂=2</div>
+      <div class="note good">Complex/imaginary roots are shown too (e.g. −1+i, −1−i). This happens when the discriminant b²−4ac is negative.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Cubic: ax³ + bx² + cx + d = 0</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Enter a, b, c, d one by one, pressing <span class="key">=</span> after each</li>
+        <li>Press <span class="key">=</span> to cycle through x₁, x₂, x₃</li>
+      </ol>
+      <div class="eg">x³ + 0x² − 4x − 4 = 0   →   a=1, b=0, c=−4, d=−4   →   x=−1, −2, 2</div>
+      <div class="note warn">If a term is missing (e.g. no x² term), you must still enter <strong>0</strong> for that coefficient. Do not skip it.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Casio fx-97SG X Calculator Guide &nbsp;·&nbsp; Based on the official User's Guide
+</div>
+
+<script>
+  function show(id, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+  }
+</script>
+</body>
+</html>

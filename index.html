@@ -83,6 +83,48 @@
 
   .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
 
+
+    .eg-math .eq { font-family: serif; }
+
+  .math-frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    font-size: 0.85em;
+    line-height: 1.2;
+  }
+  .math-num {
+    border-bottom: 1.2px solid currentColor;
+    padding: 0 3px 1px;
+    text-align: center;
+    min-width: 12px;
+  }
+  .math-den {
+    padding: 1px 3px 0;
+    text-align: center;
+  }
+  .math-overline {
+    display: inline-block;
+    border-top: 1.5px solid currentColor;
+    padding: 0 2px;
+    margin-left: 1px;
+  }
+  .math-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: #F5F4EF;
+    border-left: 3px solid #6C62D4;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-top: 12px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+  }
+  .math-label { font-family: Georgia, serif; }
+  .math-eq { font-family: Georgia, serif; color: #3A3835; }
   .footer { text-align: center; padding: 24px 40px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--card); }
 
   @media (max-width: 600px) {
@@ -111,6 +153,7 @@
     <button class="tab" onclick="show('time', this)">Time Conversion</button>
     <button class="tab" onclick="show('sim', this)">Simultaneous Eq</button>
     <button class="tab" onclick="show('poly', this)">Quadratic &amp; Cubic</button>
+    <button class="tab" onclick="show('trigo', this)">Trigo Exact Form</button>
   </div>
 
   <!-- ── STANDARD FORM ── -->
@@ -321,6 +364,74 @@ Result: x=−1, y=2</div>
       <div class="eg">x³ + 0x² − 4x − 4 = 0   →   a=1, b=0, c=−4, d=−4   →   x=−1, −2, 2</div>
       <div class="note warn">If a term is missing (e.g. no x² term), you must still enter <strong>0</strong> for that coefficient. Do not skip it.</div>
     </div>
+  </div>
+
+
+  <!-- ── TRIGO EXACT FORM ── -->
+  <div id="trigo" class="section">
+    <div class="section-title">6. Trigo Exact Form Using the Calculator</div>
+
+    <p class="body-text">Your calculator gives decimal answers for sin, cos and tan. But for special angles, you can work backwards to find the <strong>exact form</strong> (surds/fractions) using this squaring trick.</p>
+
+    <div class="card">
+      <div class="card-title">The Method</div>
+      <div class="label">Steps</div>
+      <ol class="steps">
+        <li>Key in your trigo value — e.g. <strong>sin 45</strong><br>You get a decimal like <strong>0.70710...</strong></li>
+        <li>Square the result — you get a clean fraction e.g. <strong>1/2</strong></li>
+        <li>The exact form is the square root of that fraction — with the <strong>sign</strong> from the original decimal</li>
+      </ol>
+
+    </div>
+
+    <div class="card">
+      <div class="card-title">Example 1 &mdash; sin 60&deg;</div>
+      <ol class="steps">
+        <li>sin 60° = <strong>0.86602...</strong> &nbsp;(positive)</li>
+        <li>Square the result &rarr; you get <strong>3/4</strong></li>
+        <li>Original was positive &rarr; <strong>sin 60&deg; = <span class="math-frac"><span class="math-num">&#x221A;<span class="math-overline">3</span></span><span class="math-den">&#x221A;<span class="math-overline">4</span></span></span></strong></li>
+      </ol>
+      <div class="math-display">
+        <span class="math-label">sin 60&deg;</span>
+        <span class="math-eq">=</span>
+        <span class="math-frac"><span class="math-num">&#x221A;<span class="math-overline">3</span></span><span class="math-den">&#x221A;<span class="math-overline">4</span></span></span>
+        <span class="math-eq">=</span>
+        <span class="math-frac"><span class="math-num">&#x221A;<span class="math-overline">3</span></span><span class="math-den">2</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Example 2 &mdash; cos 150&deg;</div>
+      <ol class="steps">
+        <li>cos 150° = <strong>&minus;0.86602...</strong> &nbsp;(negative)</li>
+        <li>Square the result &rarr; you get <strong>3/4</strong></li>
+        <li>Original was negative &rarr; <strong>cos 150&deg; = &minus;<span class="math-frac"><span class="math-num">&#x221A;<span class="math-overline">3</span></span><span class="math-den">&#x221A;<span class="math-overline">4</span></span></span></strong></li>
+      </ol>
+      <div class="math-display">
+        <span class="math-label">cos 150&deg;</span>
+        <span class="math-eq">= &minus;</span>
+        <span class="math-frac"><span class="math-num">&#x221A;<span class="math-overline">3</span></span><span class="math-den">&#x221A;<span class="math-overline">4</span></span></span>
+        <span class="math-eq">= &minus;</span>
+        <span class="math-frac"><span class="math-num">&#x221A;<span class="math-overline">3</span></span><span class="math-den">2</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Example 3 &mdash; tan 60&deg;</div>
+      <ol class="steps">
+        <li>tan 60° = <strong>1.73205...</strong> &nbsp;(positive)</li>
+        <li>Square the result &rarr; you get <strong>3</strong> &nbsp;(whole number &mdash; no fraction)</li>
+        <li>Original was positive &rarr; <strong>tan 60&deg; = &#x221A;<span class="math-overline">3</span></strong></li>
+      </ol>
+      <div class="math-display">
+        <span class="math-label">tan 60&deg;</span>
+        <span class="math-eq">=</span>
+        <span>&#x221A;<span class="math-overline">3</span></span>
+      </div>
+    </div>
+
+
+
   </div>
 
 </div>
